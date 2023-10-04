@@ -1,63 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="Title" content="Узнать погоду в городе Семей" />
+        <meta
+            name="Description"
+            content="Узнать погоду в городе Семей. Можно узнать погоду на данный момент и в течении недели. На сайте имеется погода от максимальной до минимальной на неделю."
+        />
+        <meta
+            name="Keywords"
+            content="Погода город Семей, погода на неделю Семей, погода на данный момент Семей"
+        />
+        <meta name="Author" content="Алишер Смагулов" />
+        <meta name="Copyright" content="Алишер Смагулов" />
         <title>Weather Semey</title>
+        <link
+            rel="shortcut icon"
+            href="images/shortcut.ico"
+            type="image/x-icon"
+        />
+        <link rel="stylesheet" href="css/style.min.css" />
     </head>
     <body>
-        <div class="wrapper">
+        <div class="wrapper bg_noon">
             <div class="container">
                 <div class="weather">
-                    <div class="weather_update">
-                        Последнее обновление в
-                        <span class="weather_update_time"></span>
-                    </div>
-                    <div class="weather_current">
-                        <div class="weather_name">
-                            Погода сейчас: <span class="current_temp"></span>
+                    <h1 class="weather_city">Семей</h1>
+
+                    <div class="weather_now">
+                        <div class="weather_now_state"></div>
+                        <img
+                            src=""
+                            alt="Weather image"
+                            class="weather_now_image"
+                        />
+                        <div class="weather_now_temp">
+                            <span class="weather_now_temp_number"></span>&deg;C
                         </div>
-                        <div class="weather_name">
-                            Ощущается как:
-                            <span class="current_temp_feelslike"></span>
-                        </div>
-                        <div class="weather_name">
-                            Состояние: <span class="current_condition"></span>
-                        </div>
+                        <div class="weather_now_date"></div>
                     </div>
-                    <div class="weather_today">
-                        <div class="weather_name">Погода сегодня</div>
-                        <div class="today_temp">
-                            <div class="today_temp_name">
-                                Минимальная погода:
-                                <span class="today_temp_min"></span>
-                            </div>
-                            <div class="today_temp_name">
-                                Максимальная погода:
-                                <span class="today_temp_max"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="weather_tomorrow">
-                        <div class="weather_name"></div>
-                        <div class="today_temp"></div>
-                    </div>
-                    <div class="weather_through_two">
-                        <div class="weather_name"></div>
-                        <div class="today_temp"></div>
-                    </div>
-                    <div class="weather_through_three">
-                        <div class="weather_name"></div>
-                        <div class="today_temp"></div>
-                    </div>
-                    <div class="weather_through_four">
-                        <div class="weather_name"></div>
-                        <div class="today_temp"></div>
-                    </div>
-                    <div class="weather_through_five">
-                        <div class="weather_name"></div>
-                        <div class="today_temp"></div>
-                    </div>
+
+                    <ul class="weather_week"></ul>
                 </div>
             </div>
         </div>
