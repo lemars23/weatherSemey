@@ -1,0 +1,185 @@
+*, *::after, *::before {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-size: 16px;
+    font-family: Arial, Helvetica, Verdana, Geneva, Tahoma, sans-serif;
+}
+
+li {
+    list-style: none;
+}
+
+@media screen and (max-width: 768px) and (min-width: 360px) {
+    body {
+        color: #fff;
+    }
+
+    .bg_noon {
+        background: linear-gradient(90deg, rgba(64,178,248,1) 0%, rgba(65,141,225,1) 50%, rgba(52,65,196,1) 100%);
+    }
+    
+    .bg_evening {
+        background: linear-gradient(90deg, rgba(236,176,60,1) 0%, rgba(222,130,67,1) 50%, rgba(193,66,56,1) 100%);
+    }
+    
+    .bg_night {
+        background: linear-gradient(90deg, rgba(34,50,119,1) 0%, rgba(27,34,88,1) 50%, rgba(13,14,35,1) 100%);
+    }
+    
+    .wrapper {
+        height: 100vh;
+        width: 100vw;
+        overflow: hidden;
+        padding: 20px;
+
+        .weather_city {
+            text-align: center;
+            font-weight: 600;
+            font-size: 2em;
+        }
+    }
+
+    .weather_now {
+        padding-top: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        
+        &_state {
+            text-align: center;
+        }
+
+        &_image {
+            text-align: center;
+            padding-top: 10px;
+            width: 27%;
+            height: 27%;
+        }
+
+        &_temp {
+            font-size: 2.5em;
+            font-weight: 600;
+            text-align: center;
+            padding-top: 10px;
+        }
+
+        &_date {
+            text-align: center;
+            padding-top: 10px;
+        }
+    }
+
+    .weather_week {
+        padding-top: 25px;
+        border-bottom: 1px solid #fff;
+    }
+
+    .weather_day, .weather_today {
+        display: flex;
+        align-items: center;
+        padding: 5px;
+        
+        border-top: 1px solid #fff;
+
+        *:not(:first-child) {
+            text-align: center;
+        }
+
+        * {
+            flex: 1 1 150px;
+        }
+    }
+}
+
+@media screen and (max-width: 740px) {
+    .weather_day, .weather_today {
+        padding: 5px 0;
+
+        .weather_day_image {
+            width: 23%;
+            height: 100%;
+        }
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .weather_day, .weather_today {
+        padding: 6px 0;
+
+        .weather_day_image {
+            width: 26%;
+            height: 100%;
+        }
+    }
+}
+
+
+@media screen and (max-width: 650px) {
+    .weather_day, .weather_today {
+        padding: 7px 0;
+
+        .weather_day_image {
+            width: 26.5%;
+            height: 100%;
+        }
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .weather_day, .weather_today {
+        padding: 8.5px 0;
+
+        .weather_day_image {
+            width: 28%;
+            height: 100%;
+        }
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .weather_day, .weather_today {
+        padding: 9.5px 0;
+
+        .weather_day_image {
+            width: 30.5%;
+            height: 100%;
+        }
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .weather_day, .weather_today {
+        padding: 11px 0;
+
+        .weather_day_image {
+            width: 33%;
+            height: 100%;
+        }
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .weather_day, .weather_today {
+        padding: 13px 0;
+
+        .weather_day_image {
+            width: 35.5%;
+            height: 100%;
+        }
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .weather_day, .weather_today {
+        padding: 14.5px 0;
+
+        .weather_day_image {
+            width: 39%;
+            height: 100%;
+        }
+    }
+}
