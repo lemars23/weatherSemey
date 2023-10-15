@@ -18,6 +18,7 @@ li {
         color: #fff;
     }
 
+    // Темы
     .bg_noon {
         background: linear-gradient(90deg, rgba(64,178,248,1) 0%, rgba(65,141,225,1) 50%, rgba(52,65,196,1) 100%);
     }
@@ -29,25 +30,42 @@ li {
     .bg_night {
         background: linear-gradient(90deg, rgba(34,50,119,1) 0%, rgba(27,34,88,1) 50%, rgba(13,14,35,1) 100%);
     }
-    
+    // Главная страница
     .wrapper {
         height: 100vh;
         width: 100vw;
         overflow: hidden;
-        padding: 20px;
-
-        .weather_city {
-            text-align: center;
-            font-weight: 600;
-            font-size: 2em;
-        }
+        padding: 15px;
+        position: relative;
+        z-index: 0;
+        
     }
-
+    // Контейнер
+    .container {
+        height: 100%;
+    }
+    // Главный контейнер погоды
+    .weather {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    // Имя города
+    .weather_city {
+        text-align: center;
+        font-weight: 600;
+        font-size: 2em;
+        flex-grow: 0;
+    }
+    // Погода на данный момент
     .weather_now {
+        flex-grow: 0;
         padding-top: 10px;
         display: flex;
         flex-direction: column;
         align-items: center;
+        justify-content: space-evenly;
         
         &_state {
             text-align: center;
@@ -72,19 +90,28 @@ li {
             padding-top: 10px;
         }
     }
-
+    .weather_now_state,
+    .weather_now_date {
+        font-size: 1.2em;
+        font-weight: 500;
+    }
+    // Погода на неделю
     .weather_week {
-        padding-top: 25px;
+        flex-grow: 1;
+        padding-top: 15px;
         border-bottom: 1px solid #fff;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
     }
 
-    .weather_day, .weather_today {
+    .weather_day {
+        flex-grow: 1;
         display: flex;
         align-items: center;
-        padding: 5px;
-        
         border-top: 1px solid #fff;
-
+        font-size: 1.2em;
+        
         *:not(:first-child) {
             text-align: center;
         }
@@ -93,93 +120,464 @@ li {
             flex: 1 1 150px;
         }
     }
-}
+    .weather_now_temp {
+        font-size: 1.7em;
+    }
+    // Открытые данные на день
+    .weather_opened {
+        z-index: 1;
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width: 100vw;
+        background-color: rgba(0,0,0, 0.8);
+    }
+    // Крестик для закрытия
+    .weather_closed {
+        width: 48px;
+        height: 48px;
+        position: absolute;
+        top: 0;
+        right: -12%;
+        margin-right: 12%;
+        cursor: pointer;
+        z-index: 1;
+    }
 
-@media screen and (max-width: 740px) {
-    .weather_day, .weather_today {
-        padding: 5px 0;
+    .closed_wrapper {
+        position: relative;  
+    }
 
-        .weather_day_image {
-            width: 23%;
-            height: 100%;
+    .closed_one {
+        height: 4px;
+        width: 50px;
+        position: absolute;
+        margin-top: 24px;
+        background-color: #00b7ff;
+        border-radius: 2px;
+        transform: rotate(45deg);
+    }
+
+    .closed_two {
+        height: 4px;
+        width: 50px;
+        position: absolute;
+        margin-top: 24px;
+        background-color: #00b7ff;
+        border-radius: 2px;
+        transform: rotate(-45deg);
+    }
+    // Данные на день
+    .weather_data {
+        padding: 10px;
+        overflow-x: hidden;
+        scroll-snap-type: x mandatory;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        row-gap: 1.4%;
+        align-items: center;
+    }
+    // Имя дня недели
+    .data_name {
+        font-size: 1.5em;
+        font-weight: 700;
+    }
+    // Список почасовой температуры
+    .data_list {
+        scroll-snap-align: start;
+        text-align: center;
+        position: relative;
+        border-collapse: collapse;
+    }
+    // Единица времени в списке
+    .data_item {
+        
+        border: 1px solid #fff;
+       
+        td { 
+            padding: 5px 0;
         }
     }
 }
 
-@media screen and (max-width: 700px) {
-    .weather_day, .weather_today {
-        padding: 6px 0;
-
+// Больше 740 пикселей холст не показывает
+@media screen and (min-width: 740px) {
+    .wrapper {
+        display: none;
+    }
+}
+// От 700 до 740
+@media screen and (min-width: 700px) and (max-width: 740px) {
+    .weather_now_image {
+        width: 30%;
+        height: 50%;
+    }
+    .weather_week {
+        padding-top: 15px;
+    }
+    .weather_now_date {
+        padding-top: 15px;
+    }
+    .weather_day {
         .weather_day_image {
-            width: 26%;
+            width: 30%;
+            height: 100%;
+        }
+    }
+    .data_item {
+        td {
+            padding: 15px;
+        }
+    }
+}
+// От 675 до 700
+@media screen and (min-width: 675px) and (max-width: 700px) {
+    .weather_now_temp {
+        font-size: 1.7em;
+    }
+    .weather_now_image {
+        width: 30%;
+        height: 50%;
+    }
+    .weather_week {
+        padding-top: 15px;
+    }
+    .weather_now_date {
+        padding-top: 15px;
+    }
+    .weather_day {
+        .weather_day_image {
+            width: 30%;
+            height: 100%;
+        }
+    }
+    .data_item {
+        td {
+            padding: 15px;
+        }
+    }
+}
+// От 650 до 675
+@media screen and (min-width: 650px) and (max-width: 675px) {
+    .weather_now_temp {
+        font-size: 1.7em;
+    }
+    .weather_now_image {
+        width: 30%;
+        height: 50%;
+    }
+    .weather_week {
+        padding-top: 15px;
+    }
+    .weather_now_date {
+        padding-top: 15px;
+    }
+    .weather_day {
+        .weather_day_image {
+            width: 30%;
+            height: 100%;
+        }
+    }
+    .data_item {
+        td {
+            padding: 15px;
+        }
+    }
+}
+// От 625 до 650
+@media screen and (min-width: 625px) and (max-width: 650px) {
+    .weather_now_temp {
+        font-size: 1.7em;
+    }
+    .weather_now_image {
+        width: 30%;
+        height: 50%;
+    }
+    .weather_week {
+        padding-top: 15px;
+    }
+    .weather_now_date {
+        padding-top: 15px;
+    }
+    .weather_day {
+        .weather_day_image {
+            width: 30%;
+            height: 100%;
+        }
+    }
+    .data_item {
+        td {
+            padding: 12px;
+        }
+    }
+}
+// От 600 до 625
+@media screen and (min-width: 600px) and (max-width: 625px) {
+    .weather_now_temp {
+        font-size: 1.7em;
+    }
+    .weather_now_image {
+        width: 30%;
+        height: 50%;
+    }
+    .weather_week {
+        padding-top: 15px;
+    }
+    .weather_now_date {
+        padding-top: 15px;
+    }
+    .weather_day {
+        .weather_day_image {
+            width: 30%;
+            height: 100%;
+        }
+    }
+    .data_item {
+        td {
+            padding: 10px;
+        }
+    }
+}
+// От 575 до 600
+@media screen and (min-width: 575px) and (max-width: 600px) {
+    .weather_now_temp {
+        font-size: 1.7em;
+    }
+    .weather_now_image {
+        width: 30%;
+        height: 50%;
+    }
+    .weather_week {
+        padding-top: 15px;
+    }
+    .weather_day {
+        .weather_day_image {
+            width: 30%;
+            height: 100%;
+        }
+    }
+    .data_item {
+        td {
+            padding: 10px 0;
+        }
+        td:first-child {
+            padding: 0 0 0 10px;
+        }
+        td:last-child {
+            padding: 0 10px 0 0px;
+        }
+    }
+}
+// От 550 до 575
+@media screen and (min-width: 550px) and (max-width: 575px) {
+    .weather_now_temp {
+        font-size: 1.7em;
+    }
+    .weather_now_image {
+        width: 30%;
+        height: 50%;
+    }
+    .weather_week {
+        padding-top: 15px;
+    }
+    .weather_day {
+        .weather_day_image {
+            width: 30%;
+            height: 100%;
+        }
+    }
+    .data_item {
+        td {
+            padding: 10px 0;
+        }
+        td:first-child {
+            padding: 0 0 0 5px;
+        }
+        td:last-child {
+            padding: 0 5px 0 0px;
+        }
+    }
+}
+// От 525 до 550
+@media screen and (min-width: 525px) and (max-width: 550px) {
+    .weather_now_temp {
+        font-size: 1.7em;
+    }
+    .weather_now_image {
+        width: 30%;
+        height: 50%;
+    }
+    .weather_week {
+        padding-top: 10px;
+    }
+    .weather_day {
+        .weather_day_image {
+            width: 30%;
+            height: 100%;
+        }
+    }
+
+    .data_item {
+        td {
+            padding: 10px 0;
+        }
+        td:first-child {
+            padding: 0 0 0 5px;
+        }
+        td:last-child {
+            padding: 0 5px 0 0px;
+        }
+    }
+}
+// От 500 до 525
+@media screen and (min-width: 500px) and (max-width: 525px) {
+    .weather_now_temp {
+        font-size: 1.9em;
+    }
+    .weather_now_image {
+        width: 30%;
+        height: 50%;
+    }
+    .weather_week {
+        padding-top: 10px;
+    }
+    .weather_day {
+        .weather_day_image {
+            width: 30%;
+            height: 100%;
+        }
+    }
+    .data_item {
+        td {
+            padding: 10px 0;
+        }
+        td:first-child {
+            padding: 0 0 0 5px;
+        }
+        td:last-child {
+            padding: 0 5px 0 0px;
+        }
+    }
+}
+// От 475 до 500
+@media screen and (min-width: 475px) and (max-width: 500px) {
+    .weather_now_temp {
+        font-size: 1.9em;
+    }
+    .weather_now_image {
+        width: 30%;
+        height: 50%;
+    }
+    .weather_week {
+        padding-top: 10px;
+    }
+    .weather_day {
+        padding: 3.3px 0;
+        .weather_day_image {
+            width: 34%;
             height: 100%;
         }
     }
 }
-
-
-@media screen and (max-width: 650px) {
-    .weather_day, .weather_today {
-        padding: 7px 0;
-
-        .weather_day_image {
-            width: 26.5%;
-            height: 100%;
-        }
+// От 450 до 475
+@media screen and (min-width: 450px) and (max-width: 475px) {
+    .weather_now_temp {
+        font-size: 1.8em;
     }
-}
-
-@media screen and (max-width: 600px) {
-    .weather_day, .weather_today {
-        padding: 8.5px 0;
-
-        .weather_day_image {
-            width: 28%;
-            height: 100%;
-        }
+    .weather_now_image {
+        width: 30%;
+        height: 50%;
     }
-}
-
-@media screen and (max-width: 550px) {
-    .weather_day, .weather_today {
-        padding: 9.5px 0;
-
-        .weather_day_image {
-            width: 30.5%;
-            height: 100%;
-        }
+    .weather_week {
+        padding-top: 10px;
     }
-}
-
-@media screen and (max-width: 500px) {
-    .weather_day, .weather_today {
-        padding: 11px 0;
-
-        .weather_day_image {
-            width: 33%;
-            height: 100%;
-        }
-    }
-}
-
-@media screen and (max-width: 450px) {
-    .weather_day, .weather_today {
-        padding: 13px 0;
-
+    .weather_day {
+        padding: 4.2px 0;
         .weather_day_image {
             width: 35.5%;
             height: 100%;
         }
     }
 }
-
-@media screen and (max-width: 400px) {
-    .weather_day, .weather_today {
-        padding: 14.5px 0;
-
+// От 420 до 450
+@media screen and (min-width: 420px) and (max-width: 450px) {
+    .weather_now_temp {
+        font-size: 2em;
+    }
+    .weather_now_image {
+        width: 30%;
+        height: 50%;
+    }
+    .weather_week {
+        padding-top: 10px;
+    }
+    .weather_day {
+        padding: 4.2px 0;
         .weather_day_image {
-            width: 39%;
+            width: 35.5%;
             height: 100%;
+        }
+    }
+}
+// От 400 до 420
+@media screen and (min-width: 400px) and (max-width: 420px) {
+    .weather_now_temp {
+        font-size: 2em;
+    }
+    .weather_now_image {
+        width: 30%;
+        height: 50%;
+    }
+    .weather_week {
+        padding-top: 10px;
+    }
+    .weather_day {
+        padding: 6px 0;
+        .weather_day_image {
+            width: 35.5%;
+            height: 100%;
+        }
+    }
+}
+// От 380 до 400
+@media screen and (min-width: 380px) and (max-width: 400px) {
+    .weather_now_temp {
+        font-size: 2.2em;
+    }
+    .weather_now_image {
+        width: 33%;
+        height: 50%;
+    }
+    .weather_week {
+        padding-top: 15px;
+    }
+    .weather_day {
+        padding: 10px 0;
+        .weather_day_image {
+            width: 33.6%;
+            height: 100%;
+        }
+    }
+}
+// От 360 до 380
+@media screen and (min-width: 360px) and (max-width: 380px) {
+    .weather_now_temp {
+        font-size: 2.2em;
+    }
+    .weather_now_image {
+        width: 33%;
+        height: 50%;
+    }
+    .weather_week {
+        padding-top: 15px;
+    }
+    .weather_day {
+        padding: 6.6px 0;
+        .weather_day_image {
+            width: 37%;
+            height: 50%;
         }
     }
 }
